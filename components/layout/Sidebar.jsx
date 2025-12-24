@@ -11,7 +11,9 @@ import {
   AlertCircle,
   User,
   Truck,
-  Users
+  Users,
+  TruckIcon,
+  BookOpen
 } from 'lucide-react';
 
 const navigation = [
@@ -25,6 +27,9 @@ const navigation = [
   { name: 'Warehouse', href: '/warehouse', icon: Warehouse },
   { name: 'Logistics', href: '/logistics', icon: Truck },
   { name: 'Vendors', href: '/vendors', icon: Users },
+  { name: 'Assets', href: '/assets', icon: Package },
+  { name: 'Asset Movements', href: '/asset-movements', icon: TruckIcon },
+  { name: 'Catalogues', href: '/catalogues', icon: BookOpen },
 ];
 
 export default function Sidebar({ isOpen, currentPath, userRole }) {
