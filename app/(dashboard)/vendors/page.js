@@ -55,7 +55,7 @@ export default function VendorsPage() {
       v.contract_end_date && new Date(v.contract_end_date) > new Date()
     ).length;
     const avgRating = data.length > 0
-      ? data.reduce((sum, v) => sum + (v.vendor_rating || 0), 0) / data.length
+      ? data.reduce((sum, v) => sum + (Number(v.vendor_rating) || 0), 0) / data.length
       : 0;
     
     setStats({ total, active, avgRating });
@@ -183,7 +183,7 @@ export default function VendorsPage() {
             <Star className="h-4 w-4 text-yellow-400" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.avgRating.toFixed(1)}</div>
+            <div className="text-2xl font-bold">{Number(stats.avgRating).toFixed(1)}</div>
           </CardContent>
         </Card>
       </div>
@@ -236,7 +236,7 @@ export default function VendorsPage() {
                     <td className="px-6 py-4 text-sm">
                       <div className="flex items-center gap-1">
                         <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-                        <span>{vendor.vendor_rating?.toFixed(1) || 'N/A'}</span>
+                        <span>{vendor.vendor_rating ? Number(vendor.vendor_rating).toFixed(1) : 'N/A'}</span>
                       </div>
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-900">
