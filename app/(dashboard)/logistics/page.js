@@ -15,7 +15,7 @@ import LoadingSpinner from '@/components/shared/LoadingSpinner';
 export default function LogisticsPage() {
   const [shipments, setShipments] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [statusFilter, setStatusFilter] = useState('');
+  const [statusFilter, setStatusFilter] = useState('all');
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedShipment, setSelectedShipment] = useState(null);
@@ -33,7 +33,7 @@ export default function LogisticsPage() {
   const fetchShipments = async () => {
     try {
       setLoading(true);
-      const url = statusFilter 
+      const url = statusFilter && statusFilter !== 'all'
         ? `/api/logistics?status=${encodeURIComponent(statusFilter)}`
         : '/api/logistics';
       const res = await fetch(url);
@@ -210,12 +210,12 @@ export default function LogisticsPage() {
 
       {/* Filter */}
       <div className="flex gap-4">
-        <Select value={statusFilter} onValueChange={setStatusFilter}>
+        <Select value={statusFilter} onValueChange={setStatusFilter} defaultValue="all">
           <SelectTrigger className="w-[200px]">
             <SelectValue placeholder="Filter by status" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Statuses</SelectItem>
+            <SelectItem value="all">All Statuses</SelectItem>
             <SelectItem value="Pending">Pending</SelectItem>
             <SelectItem value="In Transit">In Transit</SelectItem>
             <SelectItem value="Delivered">Delivered</SelectItem>
@@ -377,6 +377,7 @@ function LogisticsForm({ initialData, onSubmit, onCancel }) {
         <Select
           value={formData.delivery_status}
           onValueChange={(value) => setFormData({ ...formData, delivery_status: value })}
+          defaultValue="Pending"
         >
           <SelectTrigger>
             <SelectValue />
