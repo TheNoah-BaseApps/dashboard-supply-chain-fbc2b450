@@ -13,7 +13,10 @@ import {
   Truck,
   Users,
   TruckIcon,
-  BookOpen
+  BookOpen,
+  DollarSign,
+  ShoppingBag,
+  PackageCheck
 } from 'lucide-react';
 
 const navigation = [
@@ -30,6 +33,9 @@ const navigation = [
   { name: 'Assets', href: '/assets', icon: Package },
   { name: 'Asset Movements', href: '/asset-movements', icon: TruckIcon },
   { name: 'Catalogues', href: '/catalogues', icon: BookOpen },
+  { name: 'Sales', href: '/sales', icon: DollarSign },
+  { name: 'Order & Purchases', href: '/order-purchases', icon: ShoppingBag },
+  { name: 'Supply Chain Orders', href: '/supply-chain-orders', icon: PackageCheck },
 ];
 
 export default function Sidebar({ isOpen, currentPath, userRole }) {

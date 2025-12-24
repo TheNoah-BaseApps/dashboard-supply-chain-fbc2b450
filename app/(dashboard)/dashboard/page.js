@@ -7,7 +7,7 @@ import StatsCard from '@/components/dashboard/StatsCard';
 import ChartWidget from '@/components/dashboard/ChartWidget';
 import RecentChanges from '@/components/dashboard/RecentChanges';
 import LoadingSpinner from '@/components/shared/LoadingSpinner';
-import { Package, DollarSign, AlertTriangle, TrendingUp, Warehouse, Truck, Users, BookOpen, BarChart3, CheckSquare, Database } from 'lucide-react';
+import { Package, DollarSign, AlertTriangle, TrendingUp, Warehouse, Truck, Users, BookOpen, BarChart3, CheckSquare, Database, ShoppingBag, PackageCheck } from 'lucide-react';
 import Link from 'next/link';
 
 export default function DashboardPage() {
@@ -315,6 +315,75 @@ export default function DashboardPage() {
                 <p className="text-sm text-gray-600">
                   Validate data integrity and compliance across workflows
                 </p>
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/sales">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-emerald-100 rounded-lg">
+                    <DollarSign className="h-6 w-6 text-emerald-600" />
+                  </div>
+                  <CardTitle className="text-lg">Sales</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">
+                  Manage sales transactions and customer orders
+                </p>
+                {summary?.total_sales !== undefined && (
+                  <p className="text-sm font-semibold text-gray-900 mt-2">
+                    {summary.total_sales} total sales
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/order-purchases">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-violet-100 rounded-lg">
+                    <ShoppingBag className="h-6 w-6 text-violet-600" />
+                  </div>
+                  <CardTitle className="text-lg">Order & Purchases</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">
+                  Manage purchase orders and supplier transactions
+                </p>
+                {summary?.active_orders !== undefined && (
+                  <p className="text-sm font-semibold text-gray-900 mt-2">
+                    {summary.active_orders} active orders
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/supply-chain-orders">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-lime-100 rounded-lg">
+                    <PackageCheck className="h-6 w-6 text-lime-600" />
+                  </div>
+                  <CardTitle className="text-lg">Supply Chain Orders</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">
+                  Manage supply chain order processing and fulfillment
+                </p>
+                {summary?.supply_chain_orders !== undefined && (
+                  <p className="text-sm font-semibold text-gray-900 mt-2">
+                    {summary.supply_chain_orders} orders
+                  </p>
+                )}
               </CardContent>
             </Card>
           </Link>
