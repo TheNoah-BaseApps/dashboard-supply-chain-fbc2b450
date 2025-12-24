@@ -9,7 +9,9 @@ import {
   BarChart3, 
   FileText, 
   AlertCircle,
-  User
+  User,
+  Truck,
+  Users
 } from 'lucide-react';
 
 const navigation = [
@@ -20,6 +22,9 @@ const navigation = [
   { name: 'Audit Logs', href: '/audit-logs', icon: FileText },
   { name: 'Validations', href: '/validations', icon: AlertCircle },
   { name: 'Profile', href: '/profile', icon: User },
+  { name: 'Warehouse', href: '/warehouse', icon: Warehouse },
+  { name: 'Logistics', href: '/logistics', icon: Truck },
+  { name: 'Vendors', href: '/vendors', icon: Users },
 ];
 
 export default function Sidebar({ isOpen, currentPath, userRole }) {

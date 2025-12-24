@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import StatsCard from '@/components/dashboard/StatsCard';
 import ChartWidget from '@/components/dashboard/ChartWidget';
 import RecentChanges from '@/components/dashboard/RecentChanges';
 import LoadingSpinner from '@/components/shared/LoadingSpinner';
-import { Package, DollarSign, AlertTriangle, TrendingUp } from 'lucide-react';
+import { Package, DollarSign, AlertTriangle, TrendingUp, Warehouse, Truck, Users } from 'lucide-react';
+import Link from 'next/link';
 
 export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
@@ -97,6 +99,75 @@ export default function DashboardPage() {
           icon={TrendingUp}
           trend={summary?.items_trend}
         />
+      </div>
+
+      <div>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Supply Chain Workflows</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <Link href="/warehouse">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-blue-100 rounded-lg">
+                    <Warehouse className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <CardTitle className="text-lg">Warehouse Management</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">
+                  Manage warehouse inventory, stock levels, and product information
+                </p>
+                {summary?.total_items !== undefined && (
+                  <p className="text-sm font-semibold text-gray-900 mt-2">
+                    {summary.total_items} items in stock
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/logistics">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-green-100 rounded-lg">
+                    <Truck className="h-6 w-6 text-green-600" />
+                  </div>
+                  <CardTitle className="text-lg">Logistics Management</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">
+                  Track shipments and manage delivery logistics
+                </p>
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/vendors">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-purple-100 rounded-lg">
+                    <Users className="h-6 w-6 text-purple-600" />
+                  </div>
+                  <CardTitle className="text-lg">Vendor Management</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">
+                  Manage vendor relationships and contracts
+                </p>
+                {summary?.total_suppliers !== undefined && (
+                  <p className="text-sm font-semibold text-gray-900 mt-2">
+                    {summary.total_suppliers} active vendors
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          </Link>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

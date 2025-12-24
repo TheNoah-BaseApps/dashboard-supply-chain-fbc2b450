@@ -373,6 +373,194 @@
         ]
       }
     },
+    "/api/logistics/{id}": {
+      "get": {
+        "summary": "Get shipment by ID",
+        "tags": [
+          "Logistics Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Shipment retrieved"
+          },
+          "404": {
+            "description": "Shipment not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update shipment",
+        "tags": [
+          "Logistics Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Shipment updated successfully"
+          },
+          "404": {
+            "description": "Shipment not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete shipment",
+        "tags": [
+          "Logistics Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Shipment deleted successfully"
+          },
+          "404": {
+            "description": "Shipment not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/logistics": {
+      "get": {
+        "summary": "Get all shipments",
+        "description": "Retrieve all logistics shipments with pagination",
+        "tags": [
+          "Logistics Management"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 50
+            }
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by delivery status"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Shipments retrieved successfully"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create shipment",
+        "description": "Add a new shipment to logistics tracking",
+        "tags": [
+          "Logistics Management"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "shipment_id",
+                  "carrier_name",
+                  "delivery_status"
+                ],
+                "properties": {
+                  "shipment_id": {
+                    "type": "string"
+                  },
+                  "carrier_name": {
+                    "type": "string"
+                  },
+                  "dispatch_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "estimated_arrival": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "delivery_status": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Shipment created successfully"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
     "/api/suppliers/{id}": {
       "get": {
         "summary": "Get supplier by ID",
@@ -492,6 +680,405 @@
             "bearerAuth": []
           }
         ]
+      }
+    },
+    "/api/vendors/{id}": {
+      "get": {
+        "summary": "Get vendor by ID",
+        "tags": [
+          "Vendor Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Vendor retrieved"
+          },
+          "404": {
+            "description": "Vendor not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update vendor",
+        "tags": [
+          "Vendor Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Vendor updated successfully"
+          },
+          "404": {
+            "description": "Vendor not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete vendor",
+        "tags": [
+          "Vendor Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Vendor deleted successfully"
+          },
+          "404": {
+            "description": "Vendor not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/vendors": {
+      "get": {
+        "summary": "Get all vendors",
+        "description": "Retrieve all vendors with pagination",
+        "tags": [
+          "Vendor Management"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 50
+            }
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search by vendor name or email"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Vendors retrieved successfully"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create vendor",
+        "description": "Add a new vendor",
+        "tags": [
+          "Vendor Management"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "vendor_name",
+                  "vendor_email"
+                ],
+                "properties": {
+                  "vendor_name": {
+                    "type": "string"
+                  },
+                  "vendor_email": {
+                    "type": "string"
+                  },
+                  "contact_person": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "vendor_rating": {
+                    "type": "number"
+                  },
+                  "payment_terms": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Vendor created successfully"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/warehouse/{id}": {
+      "get": {
+        "summary": "Get warehouse item by ID",
+        "tags": [
+          "Warehouse Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Warehouse item retrieved"
+          },
+          "404": {
+            "description": "Item not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update warehouse item",
+        "tags": [
+          "Warehouse Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Item updated successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete warehouse item",
+        "tags": [
+          "Warehouse Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item deleted successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/warehouse": {
+      "get": {
+        "summary": "Get all warehouse items",
+        "description": "Retrieve all warehouse inventory items with pagination",
+        "tags": [
+          "Warehouse Management"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "Page number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 50
+            },
+            "description": "Items per page"
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search by SKU or product name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Warehouse items retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create warehouse item",
+        "description": "Add a new item to warehouse inventory",
+        "tags": [
+          "Warehouse Management"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sku",
+                  "product_name"
+                ],
+                "properties": {
+                  "sku": {
+                    "type": "string"
+                  },
+                  "product_name": {
+                    "type": "string"
+                  },
+                  "brand": {
+                    "type": "string"
+                  },
+                  "unit_price": {
+                    "type": "number"
+                  },
+                  "units_in_stock": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Warehouse item created successfully"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
       }
     }
   },
