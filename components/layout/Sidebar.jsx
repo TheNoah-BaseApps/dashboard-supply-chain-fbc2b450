@@ -39,6 +39,7 @@ const navigation = [
   { name: 'Invoices', href: '/invoices', icon: FileText },
   { name: 'Customer Management', href: '/customer-management', icon: Users },
   { name: 'Demand Management', href: '/demand-management', icon: Package },
+  { name: 'Partner Management', href: '/partner-management', icon: Users },
   { name: 'Distribution Management', href: '/distribution-management', icon: Truck },
 ];
 

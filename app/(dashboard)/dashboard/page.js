@@ -469,11 +469,34 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-gray-600">
-                  Track distribution operations, logistics, and deliveries
+                  Manage distribution logistics and deliveries
                 </p>
                 {summary?.active_distributions !== undefined && (
                   <p className="text-sm font-semibold text-gray-900 mt-2">
                     {summary.active_distributions} active distributions
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/partner-management">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-fuchsia-100 rounded-lg">
+                    <Users className="h-6 w-6 text-fuchsia-600" />
+                  </div>
+                  <CardTitle className="text-lg">Partner Management</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">
+                  Manage business partnerships and relationships
+                </p>
+                {summary?.total_partners !== undefined && (
+                  <p className="text-sm font-semibold text-gray-900 mt-2">
+                    {summary.total_partners} partners
                   </p>
                 )}
               </CardContent>
