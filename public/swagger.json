@@ -1166,264 +1166,6 @@
         }
       }
     },
-    "/api/distribution-management/{id}": {
-      "get": {
-        "summary": "Get a distribution record by ID",
-        "description": "Retrieve a specific distribution record",
-        "tags": [
-          "Distribution Management"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Distribution record ID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Distribution record details"
-          },
-          "404": {
-            "description": "Distribution record not found"
-          },
-          "500": {
-            "description": "Server error"
-          }
-        }
-      },
-      "put": {
-        "summary": "Update a distribution record",
-        "description": "Update an existing distribution record",
-        "tags": [
-          "Distribution Management"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Distribution record updated successfully"
-          },
-          "404": {
-            "description": "Distribution record not found"
-          },
-          "500": {
-            "description": "Server error"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete a distribution record",
-        "description": "Delete a distribution record by ID",
-        "tags": [
-          "Distribution Management"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Distribution record deleted successfully"
-          },
-          "404": {
-            "description": "Distribution record not found"
-          },
-          "500": {
-            "description": "Server error"
-          }
-        }
-      }
-    },
-    "/api/distribution-management": {
-      "get": {
-        "summary": "Get all distribution records",
-        "description": "Retrieve a list of all distribution management records with pagination and filtering",
-        "tags": [
-          "Distribution Management"
-        ],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "page",
-            "schema": {
-              "type": "integer",
-              "default": 1
-            },
-            "description": "Page number"
-          },
-          {
-            "in": "query",
-            "name": "limit",
-            "schema": {
-              "type": "integer",
-              "default": 10
-            },
-            "description": "Number of records per page"
-          },
-          {
-            "in": "query",
-            "name": "status",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Filter by distribution status"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of distribution records",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object"
-                      }
-                    },
-                    "pagination": {
-                      "type": "object"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Server error"
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a new distribution record",
-        "description": "Create a new distribution management record",
-        "tags": [
-          "Distribution Management"
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "distribution_id",
-                  "distributor_name",
-                  "distribution_status"
-                ],
-                "properties": {
-                  "distribution_id": {
-                    "type": "string"
-                  },
-                  "distributor_name": {
-                    "type": "string"
-                  },
-                  "warehouse_location": {
-                    "type": "string"
-                  },
-                  "distribution_start_date": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "distribution_end_date": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "total_units_distributed": {
-                    "type": "integer"
-                  },
-                  "vehicles_used": {
-                    "type": "string"
-                  },
-                  "fuel_cost": {
-                    "type": "number"
-                  },
-                  "distribution_cost": {
-                    "type": "number"
-                  },
-                  "transportation_mode": {
-                    "type": "string"
-                  },
-                  "items_distributed": {
-                    "type": "string"
-                  },
-                  "contact_person": {
-                    "type": "string"
-                  },
-                  "distribution_status": {
-                    "type": "string"
-                  },
-                  "shipping_details": {
-                    "type": "string"
-                  },
-                  "delivery_date": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "route_details": {
-                    "type": "string"
-                  },
-                  "delivery_address": {
-                    "type": "string"
-                  },
-                  "safety_compliance": {
-                    "type": "string"
-                  },
-                  "distribution_priority": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Distribution record created successfully"
-          },
-          "400": {
-            "description": "Invalid input"
-          },
-          "500": {
-            "description": "Server error"
-          }
-        }
-      }
-    },
     "/api/example": {
       "get": {
         "summary": "Example GET endpoint",
@@ -2586,6 +2328,249 @@
         }
       }
     },
+    "/api/shipment-tracking/{id}": {
+      "get": {
+        "summary": "Get a single shipment tracking record",
+        "description": "Retrieve details of a specific shipment by ID",
+        "tags": [
+          "Shipment Tracking"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Shipment tracking record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved shipment tracking record"
+          },
+          "404": {
+            "description": "Shipment tracking record not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a shipment tracking record",
+        "description": "Update details of an existing shipment",
+        "tags": [
+          "Shipment Tracking"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Shipment tracking record ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Shipment tracking record updated successfully"
+          },
+          "404": {
+            "description": "Shipment tracking record not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a shipment tracking record",
+        "description": "Remove a shipment from the tracking system",
+        "tags": [
+          "Shipment Tracking"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Shipment tracking record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Shipment tracking record deleted successfully"
+          },
+          "404": {
+            "description": "Shipment tracking record not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/shipment-tracking": {
+      "get": {
+        "summary": "Get all shipment tracking records",
+        "description": "Retrieve a list of all shipment tracking records with pagination",
+        "tags": [
+          "Shipment Tracking"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 50
+            },
+            "description": "Number of records per page"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by shipment status"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved shipment tracking records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new shipment tracking record",
+        "description": "Add a new shipment to the tracking system",
+        "tags": [
+          "Shipment Tracking"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "shipment_id",
+                  "supplier_name",
+                  "product_name",
+                  "shipment_date",
+                  "status"
+                ],
+                "properties": {
+                  "shipment_id": {
+                    "type": "string"
+                  },
+                  "supplier_name": {
+                    "type": "string"
+                  },
+                  "product_name": {
+                    "type": "string"
+                  },
+                  "shipment_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "expected_delivery": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "current_location": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "tracking_number": {
+                    "type": "string"
+                  },
+                  "weight": {
+                    "type": "number"
+                  },
+                  "shipment_mode": {
+                    "type": "string"
+                  },
+                  "carrier": {
+                    "type": "string"
+                  },
+                  "signed_by": {
+                    "type": "string"
+                  },
+                  "notes": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Shipment tracking record created successfully"
+          },
+          "400": {
+            "description": "Bad request - missing required fields"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
     "/api/suppliers/{id}": {
       "get": {
         "summary": "Get supplier by ID",
@@ -2833,6 +2818,255 @@
           },
           "400": {
             "description": "Invalid input"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/trucking-mobility/{id}": {
+      "get": {
+        "summary": "Get a single trucking and mobility record",
+        "description": "Retrieve details of a specific trucking and mobility record by ID",
+        "tags": [
+          "Trucking and Mobility Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Trucking and mobility record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved trucking and mobility record"
+          },
+          "404": {
+            "description": "Record not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a trucking and mobility record",
+        "description": "Update details of an existing trucking and mobility record",
+        "tags": [
+          "Trucking and Mobility Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Trucking and mobility record ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Record updated successfully"
+          },
+          "404": {
+            "description": "Record not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a trucking and mobility record",
+        "description": "Remove a trucking and mobility record from the system",
+        "tags": [
+          "Trucking and Mobility Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Trucking and mobility record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Record deleted successfully"
+          },
+          "404": {
+            "description": "Record not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/trucking-mobility": {
+      "get": {
+        "summary": "Get all trucking and mobility records",
+        "description": "Retrieve a list of all trucking and mobility management records",
+        "tags": [
+          "Trucking and Mobility Management"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 50
+            },
+            "description": "Number of records per page"
+          },
+          {
+            "in": "query",
+            "name": "year",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by year"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved trucking and mobility records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new trucking and mobility record",
+        "description": "Add a new trucking and mobility management record",
+        "tags": [
+          "Trucking and Mobility Management"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "year"
+                ],
+                "properties": {
+                  "year": {
+                    "type": "integer"
+                  },
+                  "domestic_freight_volume": {
+                    "type": "number"
+                  },
+                  "international_imports_freight_volume": {
+                    "type": "number"
+                  },
+                  "international_exports_freight_volume": {
+                    "type": "number"
+                  },
+                  "total_freight_volume": {
+                    "type": "number"
+                  },
+                  "freight_by_road": {
+                    "type": "number"
+                  },
+                  "freight_by_rail": {
+                    "type": "number"
+                  },
+                  "freight_by_air": {
+                    "type": "number"
+                  },
+                  "freight_by_sea": {
+                    "type": "number"
+                  },
+                  "freight_by_pipeline": {
+                    "type": "number"
+                  },
+                  "domestic_avg_shipment_value": {
+                    "type": "number"
+                  },
+                  "international_imports_avg_shipment_value": {
+                    "type": "number"
+                  },
+                  "international_exports_avg_shipment_value": {
+                    "type": "number"
+                  },
+                  "domestic_transportation_costs": {
+                    "type": "number"
+                  },
+                  "international_imports_transportation_costs": {
+                    "type": "number"
+                  },
+                  "international_exports_transportation_costs": {
+                    "type": "number"
+                  },
+                  "total_transportation_costs": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Trucking and mobility record created successfully"
+          },
+          "400": {
+            "description": "Bad request - missing required fields"
           },
           "500": {
             "description": "Server error"

@@ -479,6 +479,52 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
           </Link>
+
+          <Link href="/shipment-tracking">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-rose-100 rounded-lg">
+                    <Package className="h-6 w-6 text-rose-600" />
+                  </div>
+                  <CardTitle className="text-lg">Shipment Tracking</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">
+                  Monitor and track all shipments in real-time
+                </p>
+                {summary?.total_shipments !== undefined && (
+                  <p className="text-sm font-semibold text-gray-900 mt-2">
+                    {summary.total_shipments} total shipments
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/trucking-mobility">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-zinc-100 rounded-lg">
+                    <Truck className="h-6 w-6 text-zinc-600" />
+                  </div>
+                  <CardTitle className="text-lg">Trucking & Mobility</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">
+                  Track freight volumes and transportation metrics
+                </p>
+                {summary?.total_trucking_records !== undefined && (
+                  <p className="text-sm font-semibold text-gray-900 mt-2">
+                    {summary.total_trucking_records} total records
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          </Link>
         </div>
       </div>
 

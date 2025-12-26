@@ -41,6 +41,8 @@ const navigation = [
   { name: 'Demand Management', href: '/demand-management', icon: Package },
   { name: 'Partner Management', href: '/partner-management', icon: Users },
   { name: 'Distribution Management', href: '/distribution-management', icon: Truck },
+  { name: 'Shipment Tracking', href: '/shipment-tracking', icon: Package },
+  { name: 'Trucking & Mobility', href: '/trucking-mobility', icon: TruckIcon },
 ];
 
 export default function Sidebar({ isOpen, currentPath, userRole }) {
