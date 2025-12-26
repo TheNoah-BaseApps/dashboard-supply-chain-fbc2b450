@@ -2022,6 +2022,250 @@
         }
       }
     },
+    "/api/manufacturing/{id}": {
+      "get": {
+        "summary": "Get manufacturing record by ID",
+        "tags": [
+          "Manufacturing"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Manufacturing record details"
+          },
+          "404": {
+            "description": "Record not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update manufacturing record",
+        "tags": [
+          "Manufacturing"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Record updated successfully"
+          },
+          "404": {
+            "description": "Record not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete manufacturing record",
+        "tags": [
+          "Manufacturing"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Record deleted successfully"
+          },
+          "404": {
+            "description": "Record not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/manufacturing": {
+      "get": {
+        "summary": "Get all manufacturing records",
+        "description": "Retrieve all manufacturing operations and factory management records with pagination",
+        "tags": [
+          "Manufacturing"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "Page number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 50
+            },
+            "description": "Items per page"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by production status"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of manufacturing records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create new manufacturing record",
+        "description": "Create a new manufacturing operation record",
+        "tags": [
+          "Manufacturing"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "manufacturing_id",
+                  "factory_name",
+                  "production_status"
+                ],
+                "properties": {
+                  "manufacturing_id": {
+                    "type": "string"
+                  },
+                  "factory_name": {
+                    "type": "string"
+                  },
+                  "production_start_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "production_end_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "total_units_produced": {
+                    "type": "integer"
+                  },
+                  "defective_units": {
+                    "type": "integer"
+                  },
+                  "production_cost": {
+                    "type": "number"
+                  },
+                  "materials_used": {
+                    "type": "string"
+                  },
+                  "labor_cost": {
+                    "type": "number"
+                  },
+                  "overhead_costs": {
+                    "type": "number"
+                  },
+                  "production_line": {
+                    "type": "string"
+                  },
+                  "equipment_used": {
+                    "type": "string"
+                  },
+                  "production_status": {
+                    "type": "string"
+                  },
+                  "quality_control": {
+                    "type": "string"
+                  },
+                  "safety_compliance": {
+                    "type": "string"
+                  },
+                  "supervisor": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Manufacturing record created successfully"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
     "/api/order-purchases": {
       "get": {
         "summary": "Get all order purchases",
@@ -2304,6 +2548,249 @@
         "responses": {
           "201": {
             "description": "Partner created successfully"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/production-management/{id}": {
+      "get": {
+        "summary": "Get production management record by ID",
+        "tags": [
+          "Production Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Production management record details"
+          },
+          "404": {
+            "description": "Record not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update production management record",
+        "tags": [
+          "Production Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Record updated successfully"
+          },
+          "404": {
+            "description": "Record not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete production management record",
+        "tags": [
+          "Production Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Record deleted successfully"
+          },
+          "404": {
+            "description": "Record not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/production-management": {
+      "get": {
+        "summary": "Get all production management records",
+        "description": "Retrieve all production planning and tracking records with pagination",
+        "tags": [
+          "Production Management"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "Page number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 50
+            },
+            "description": "Items per page"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by production status"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of production management records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create new production management record",
+        "description": "Create a new production planning and tracking record",
+        "tags": [
+          "Production Management"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "production_id",
+                  "production_date",
+                  "production_status"
+                ],
+                "properties": {
+                  "production_id": {
+                    "type": "string"
+                  },
+                  "production_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "total_units_produced": {
+                    "type": "integer"
+                  },
+                  "production_cost": {
+                    "type": "number"
+                  },
+                  "materials_used": {
+                    "type": "string"
+                  },
+                  "labor_cost": {
+                    "type": "number"
+                  },
+                  "production_line": {
+                    "type": "string"
+                  },
+                  "production_status": {
+                    "type": "string"
+                  },
+                  "production_supervisor": {
+                    "type": "string"
+                  },
+                  "safety_compliance": {
+                    "type": "string"
+                  },
+                  "quality_control": {
+                    "type": "string"
+                  },
+                  "equipment_used": {
+                    "type": "string"
+                  },
+                  "defective_units": {
+                    "type": "integer"
+                  },
+                  "overhead_costs": {
+                    "type": "number"
+                  },
+                  "production_priority": {
+                    "type": "string"
+                  },
+                  "contact_person": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Production management record created successfully"
           },
           "400": {
             "description": "Invalid input"

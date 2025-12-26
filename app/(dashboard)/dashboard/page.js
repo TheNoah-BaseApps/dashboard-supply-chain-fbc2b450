@@ -7,7 +7,7 @@ import StatsCard from '@/components/dashboard/StatsCard';
 import ChartWidget from '@/components/dashboard/ChartWidget';
 import RecentChanges from '@/components/dashboard/RecentChanges';
 import LoadingSpinner from '@/components/shared/LoadingSpinner';
-import { Package, DollarSign, AlertTriangle, TrendingUp, Warehouse, Truck, Users, BookOpen, BarChart3, CheckSquare, Database, ShoppingBag, PackageCheck, FileText, UserCog } from 'lucide-react';
+import { Package, DollarSign, AlertTriangle, TrendingUp, Warehouse, Truck, Users, BookOpen, BarChart3, CheckSquare, Database, ShoppingBag, PackageCheck, FileText, UserCog, Factory, Boxes } from 'lucide-react';
 import Link from 'next/link';
 
 export default function DashboardPage() {
@@ -566,6 +566,52 @@ export default function DashboardPage() {
                 {summary?.total_gig_workers !== undefined && (
                   <p className="text-sm font-semibold text-gray-900 mt-2">
                     {summary.total_gig_workers} gig workers
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/manufacturing">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-gray-100 rounded-lg">
+                    <Factory className="h-6 w-6 text-gray-600" />
+                  </div>
+                  <CardTitle className="text-lg">Manufacturing</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">
+                  Manage manufacturing operations and factory production
+                </p>
+                {summary?.total_manufacturing !== undefined && (
+                  <p className="text-sm font-semibold text-gray-900 mt-2">
+                    {summary.total_manufacturing} operations
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/production-management">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-neutral-100 rounded-lg">
+                    <Boxes className="h-6 w-6 text-neutral-600" />
+                  </div>
+                  <CardTitle className="text-lg">Production Management</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">
+                  Track and manage production planning and operations
+                </p>
+                {summary?.total_production !== undefined && (
+                  <p className="text-sm font-semibold text-gray-900 mt-2">
+                    {summary.total_production} production items
                   </p>
                 )}
               </CardContent>
