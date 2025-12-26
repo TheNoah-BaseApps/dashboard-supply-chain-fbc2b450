@@ -36,6 +36,8 @@ const navigation = [
   { name: 'Sales', href: '/sales', icon: DollarSign },
   { name: 'Order & Purchases', href: '/order-purchases', icon: ShoppingBag },
   { name: 'Supply Chain Orders', href: '/supply-chain-orders', icon: PackageCheck },
+  { name: 'Invoices', href: '/invoices', icon: FileText },
+  { name: 'Customer Management', href: '/customer-management', icon: Users },
 ];
 
 export default function Sidebar({ isOpen, currentPath, userRole }) {

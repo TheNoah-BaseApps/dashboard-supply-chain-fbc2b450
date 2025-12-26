@@ -7,7 +7,7 @@ import StatsCard from '@/components/dashboard/StatsCard';
 import ChartWidget from '@/components/dashboard/ChartWidget';
 import RecentChanges from '@/components/dashboard/RecentChanges';
 import LoadingSpinner from '@/components/shared/LoadingSpinner';
-import { Package, DollarSign, AlertTriangle, TrendingUp, Warehouse, Truck, Users, BookOpen, BarChart3, CheckSquare, Database, ShoppingBag, PackageCheck } from 'lucide-react';
+import { Package, DollarSign, AlertTriangle, TrendingUp, Warehouse, Truck, Users, BookOpen, BarChart3, CheckSquare, Database, ShoppingBag, PackageCheck, FileText } from 'lucide-react';
 import Link from 'next/link';
 
 export default function DashboardPage() {
@@ -382,6 +382,52 @@ export default function DashboardPage() {
                 {summary?.supply_chain_orders !== undefined && (
                   <p className="text-sm font-semibold text-gray-900 mt-2">
                     {summary.supply_chain_orders} orders
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/invoices">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-amber-100 rounded-lg">
+                    <FileText className="h-6 w-6 text-amber-600" />
+                  </div>
+                  <CardTitle className="text-lg">Invoices</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">
+                  Manage invoice payments and tracking
+                </p>
+                {summary?.total_invoices !== undefined && (
+                  <p className="text-sm font-semibold text-gray-900 mt-2">
+                    {summary.total_invoices} total invoices
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/customer-management">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-sky-100 rounded-lg">
+                    <Users className="h-6 w-6 text-sky-600" />
+                  </div>
+                  <CardTitle className="text-lg">Customer Management</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">
+                  Manage customer relationships and data
+                </p>
+                {summary?.total_customers !== undefined && (
+                  <p className="text-sm font-semibold text-gray-900 mt-2">
+                    {summary.total_customers} total customers
                   </p>
                 )}
               </CardContent>
