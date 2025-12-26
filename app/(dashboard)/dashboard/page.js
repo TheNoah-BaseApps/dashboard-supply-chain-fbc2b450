@@ -576,19 +576,19 @@ export default function DashboardPage() {
             <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
               <CardHeader>
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-gray-100 rounded-lg">
-                    <Factory className="h-6 w-6 text-gray-600" />
+                  <div className="p-2 bg-blue-100 rounded-lg">
+                    <Factory className="h-6 w-6 text-blue-600" />
                   </div>
-                  <CardTitle className="text-lg">Manufacturing</CardTitle>
+                  <CardTitle className="text-lg">Manufacturing Operations</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-gray-600">
-                  Manage manufacturing operations and factory production
+                  Manage factory production lines, equipment, and quality control
                 </p>
                 {summary?.total_manufacturing !== undefined && (
                   <p className="text-sm font-semibold text-gray-900 mt-2">
-                    {summary.total_manufacturing} operations
+                    {summary.total_manufacturing} active records
                   </p>
                 )}
               </CardContent>
@@ -599,15 +599,15 @@ export default function DashboardPage() {
             <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
               <CardHeader>
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-neutral-100 rounded-lg">
-                    <Boxes className="h-6 w-6 text-neutral-600" />
+                  <div className="p-2 bg-green-100 rounded-lg">
+                    <Boxes className="h-6 w-6 text-green-600" />
                   </div>
                   <CardTitle className="text-lg">Production Management</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-gray-600">
-                  Track and manage production planning and operations
+                  Track production schedules, costs, and output metrics
                 </p>
                 {summary?.total_production !== undefined && (
                   <p className="text-sm font-semibold text-gray-900 mt-2">
