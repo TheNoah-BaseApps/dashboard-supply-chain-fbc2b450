@@ -858,6 +858,485 @@
         }
       }
     },
+    "/api/demand-management/{id}": {
+      "get": {
+        "summary": "Get demand request by ID",
+        "tags": [
+          "Demand Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "404": {
+            "description": "Demand request not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update demand request",
+        "tags": [
+          "Demand Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated successfully"
+          },
+          "404": {
+            "description": "Demand request not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete demand request",
+        "tags": [
+          "Demand Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted successfully"
+          },
+          "404": {
+            "description": "Demand request not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/demand-management": {
+      "get": {
+        "summary": "Get all demand requests",
+        "description": "Retrieve a paginated list of all demand requests with filtering options",
+        "tags": [
+          "Demand Management"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "Page number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 50
+            },
+            "description": "Items per page"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by status"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new demand request",
+        "description": "Add a new demand request to the system",
+        "tags": [
+          "Demand Management"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "demand_id",
+                  "product_name",
+                  "quantity_requested",
+                  "request_date",
+                  "status"
+                ],
+                "properties": {
+                  "demand_id": {
+                    "type": "string"
+                  },
+                  "product_name": {
+                    "type": "string"
+                  },
+                  "product_category": {
+                    "type": "string"
+                  },
+                  "quantity_requested": {
+                    "type": "integer"
+                  },
+                  "requested_by": {
+                    "type": "string"
+                  },
+                  "request_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "expected_delivery_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "priority_level": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Demand request created successfully"
+          },
+          "400": {
+            "description": "Invalid request data"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/distribution-management/{id}": {
+      "get": {
+        "summary": "Get distribution by ID",
+        "tags": [
+          "Distribution Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "404": {
+            "description": "Distribution not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update distribution",
+        "tags": [
+          "Distribution Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated successfully"
+          },
+          "404": {
+            "description": "Distribution not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete distribution",
+        "tags": [
+          "Distribution Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted successfully"
+          },
+          "404": {
+            "description": "Distribution not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/distribution-management": {
+      "get": {
+        "summary": "Get all distributions",
+        "description": "Retrieve a paginated list of all distribution records with filtering options",
+        "tags": [
+          "Distribution Management"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "Page number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 50
+            },
+            "description": "Items per page"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by distribution status"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new distribution",
+        "description": "Add a new distribution record to the system",
+        "tags": [
+          "Distribution Management"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "distribution_id",
+                  "distributor_name",
+                  "distribution_status"
+                ],
+                "properties": {
+                  "distribution_id": {
+                    "type": "string"
+                  },
+                  "distributor_name": {
+                    "type": "string"
+                  },
+                  "warehouse_location": {
+                    "type": "string"
+                  },
+                  "distribution_start_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "distribution_end_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "total_units_distributed": {
+                    "type": "integer"
+                  },
+                  "vehicles_used": {
+                    "type": "string"
+                  },
+                  "fuel_cost": {
+                    "type": "number"
+                  },
+                  "distribution_cost": {
+                    "type": "number"
+                  },
+                  "transportation_mode": {
+                    "type": "string"
+                  },
+                  "items_distributed": {
+                    "type": "string"
+                  },
+                  "contact_person": {
+                    "type": "string"
+                  },
+                  "distribution_status": {
+                    "type": "string"
+                  },
+                  "shipping_details": {
+                    "type": "string"
+                  },
+                  "delivery_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "route_details": {
+                    "type": "string"
+                  },
+                  "delivery_address": {
+                    "type": "string"
+                  },
+                  "safety_compliance": {
+                    "type": "string"
+                  },
+                  "distribution_priority": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Distribution created successfully"
+          },
+          "400": {
+            "description": "Invalid request data"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
     "/api/example": {
       "get": {
         "summary": "Example GET endpoint",
