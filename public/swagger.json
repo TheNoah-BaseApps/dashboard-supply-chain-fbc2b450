@@ -1263,6 +1263,276 @@
         }
       }
     },
+    "/api/expense-management/{id}": {
+      "get": {
+        "summary": "Get expense by ID",
+        "description": "Retrieve a specific expense by its ID",
+        "tags": [
+          "Expense Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expense ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved expense"
+          },
+          "404": {
+            "description": "Expense not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update expense",
+        "description": "Update an existing expense",
+        "tags": [
+          "Expense Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expense ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Expense updated successfully"
+          },
+          "404": {
+            "description": "Expense not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete expense",
+        "description": "Delete an expense by ID",
+        "tags": [
+          "Expense Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expense ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expense deleted successfully"
+          },
+          "404": {
+            "description": "Expense not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/expense-management": {
+      "get": {
+        "summary": "Get all expenses",
+        "description": "Retrieve a list of all expenses with optional filtering and pagination",
+        "tags": [
+          "Expense Management"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "approval_status",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by approval status"
+          },
+          {
+            "in": "query",
+            "name": "payment_status",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by payment status"
+          },
+          {
+            "in": "query",
+            "name": "expense_category",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by expense category"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved expenses",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new expense",
+        "description": "Create a new expense record",
+        "tags": [
+          "Expense Management"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "expense_id",
+                  "expense_category",
+                  "amount_spent",
+                  "vendor_name",
+                  "date_of_expense",
+                  "approval_status",
+                  "payment_status"
+                ],
+                "properties": {
+                  "expense_id": {
+                    "type": "string"
+                  },
+                  "expense_category": {
+                    "type": "string"
+                  },
+                  "amount_spent": {
+                    "type": "number"
+                  },
+                  "vendor_name": {
+                    "type": "string"
+                  },
+                  "date_of_expense": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "payment_method": {
+                    "type": "string"
+                  },
+                  "currency": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "approval_status": {
+                    "type": "string"
+                  },
+                  "approved_by": {
+                    "type": "string"
+                  },
+                  "expense_type": {
+                    "type": "string"
+                  },
+                  "recurring_expense": {
+                    "type": "boolean"
+                  },
+                  "payment_due_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "payment_status": {
+                    "type": "string"
+                  },
+                  "tax_amount": {
+                    "type": "number"
+                  },
+                  "total_expense": {
+                    "type": "number"
+                  },
+                  "notes": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Expense created successfully"
+          },
+          "400": {
+            "description": "Invalid input data"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
     "/api/gig-worker-management/{id}": {
       "get": {
         "summary": "Get gig worker by ID",
@@ -4027,6 +4297,248 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/purchase-agreements/{id}": {
+      "get": {
+        "summary": "Get purchase agreement by ID",
+        "description": "Retrieve a specific purchase agreement by its ID",
+        "tags": [
+          "Purchase Agreements"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Purchase agreement ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved purchase agreement"
+          },
+          "404": {
+            "description": "Purchase agreement not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update purchase agreement",
+        "description": "Update an existing purchase agreement",
+        "tags": [
+          "Purchase Agreements"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Purchase agreement ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Purchase agreement updated successfully"
+          },
+          "404": {
+            "description": "Purchase agreement not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete purchase agreement",
+        "description": "Delete a purchase agreement by ID",
+        "tags": [
+          "Purchase Agreements"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Purchase agreement ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Purchase agreement deleted successfully"
+          },
+          "404": {
+            "description": "Purchase agreement not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/purchase-agreements": {
+      "get": {
+        "summary": "Get all purchase agreements",
+        "description": "Retrieve a list of all purchase agreements with optional filtering and pagination",
+        "tags": [
+          "Purchase Agreements"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by agreement status"
+          },
+          {
+            "in": "query",
+            "name": "supplier_name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by supplier name"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved purchase agreements",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new purchase agreement",
+        "description": "Create a new purchase agreement record",
+        "tags": [
+          "Purchase Agreements"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "agreement_id",
+                  "supplier_name",
+                  "agreement_start_date",
+                  "agreement_end_date",
+                  "status"
+                ],
+                "properties": {
+                  "agreement_id": {
+                    "type": "string"
+                  },
+                  "supplier_name": {
+                    "type": "string"
+                  },
+                  "agreement_start_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "agreement_end_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "total_agreement_value": {
+                    "type": "number"
+                  },
+                  "payment_schedule": {
+                    "type": "string"
+                  },
+                  "products_covered": {
+                    "type": "string"
+                  },
+                  "terms_of_service": {
+                    "type": "string"
+                  },
+                  "governing_law": {
+                    "type": "string"
+                  },
+                  "penalties_for_breach": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Purchase agreement created successfully"
+          },
+          "400": {
+            "description": "Invalid input data"
+          },
+          "500": {
+            "description": "Server error"
           }
         }
       }

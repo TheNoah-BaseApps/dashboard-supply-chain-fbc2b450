@@ -50,6 +50,8 @@ const navigation = [
   { name: 'Distribution Management', href: '/distribution-management', icon: Truck },
   { name: 'Shipment Tracking', href: '/shipment-tracking', icon: Package },
   { name: 'Trucking & Mobility', href: '/trucking-mobility', icon: TruckIcon },
+  { name: 'Purchase Agreements', href: '/purchase-agreements', icon: FileText },
+  { name: 'Expense Management', href: '/expense-management', icon: DollarSign },
 ];
 
 export default function Sidebar({ isOpen, currentPath, userRole }) {

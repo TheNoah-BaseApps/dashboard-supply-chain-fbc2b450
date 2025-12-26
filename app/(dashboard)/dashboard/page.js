@@ -617,6 +617,52 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
           </Link>
+
+          <Link href="/purchase-agreements">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-indigo-100 rounded-lg">
+                    <FileText className="h-6 w-6 text-indigo-600" />
+                  </div>
+                  <CardTitle className="text-lg">Purchase Agreements</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">
+                  Manage supplier purchase agreements and contracts
+                </p>
+                {summary?.total_purchase_agreements !== undefined && (
+                  <p className="text-sm font-semibold text-gray-900 mt-2">
+                    {summary.total_purchase_agreements} active agreements
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/expense-management">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-red-100 rounded-lg">
+                    <DollarSign className="h-6 w-6 text-red-600" />
+                  </div>
+                  <CardTitle className="text-lg">Expense Management</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">
+                  Track and manage company expenses
+                </p>
+                {summary?.total_expenses !== undefined && (
+                  <p className="text-sm font-semibold text-gray-900 mt-2">
+                    ${summary.total_expenses.toLocaleString()} total expenses
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          </Link>
         </div>
       </div>
 
