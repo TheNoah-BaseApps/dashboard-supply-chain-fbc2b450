@@ -1263,6 +1263,239 @@
         }
       }
     },
+    "/api/gig-worker-management/{id}": {
+      "get": {
+        "summary": "Get gig worker by ID",
+        "description": "Retrieve a single gig worker by their ID",
+        "tags": [
+          "Gig Worker Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Gig worker ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Gig worker details"
+          },
+          "404": {
+            "description": "Gig worker not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update gig worker",
+        "description": "Update an existing gig worker's information",
+        "tags": [
+          "Gig Worker Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Gig worker ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Gig worker updated successfully"
+          },
+          "404": {
+            "description": "Gig worker not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete gig worker",
+        "description": "Remove a gig worker from the system",
+        "tags": [
+          "Gig Worker Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Gig worker ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Gig worker deleted successfully"
+          },
+          "404": {
+            "description": "Gig worker not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/gig-worker-management": {
+      "get": {
+        "summary": "Get all gig workers",
+        "description": "Retrieve a list of all gig workers with pagination and filtering",
+        "tags": [
+          "Gig Worker Management"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 50
+            },
+            "description": "Number of records to return"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by status"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of gig workers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new gig worker",
+        "description": "Add a new gig worker to the system",
+        "tags": [
+          "Gig Worker Management"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "worker_id",
+                  "worker_name",
+                  "job_role",
+                  "status"
+                ],
+                "properties": {
+                  "worker_id": {
+                    "type": "string"
+                  },
+                  "worker_name": {
+                    "type": "string"
+                  },
+                  "job_role": {
+                    "type": "string"
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "end_date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "hourly_rate": {
+                    "type": "number"
+                  },
+                  "total_hours_worked": {
+                    "type": "number"
+                  },
+                  "total_payment": {
+                    "type": "number"
+                  },
+                  "contact_number": {
+                    "type": "string"
+                  },
+                  "supervisor": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Gig worker created successfully"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
     "/api/inventory/{id}": {
       "get": {
         "summary": "Get inventory item by ID",
@@ -2564,6 +2797,243 @@
           },
           "400": {
             "description": "Bad request - missing required fields"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/staffing-management/{id}": {
+      "get": {
+        "summary": "Get staff member by ID",
+        "description": "Retrieve a single staff member by their ID",
+        "tags": [
+          "Staffing Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Staff member ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Staff member details"
+          },
+          "404": {
+            "description": "Staff member not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update staff member",
+        "description": "Update an existing staff member's information",
+        "tags": [
+          "Staffing Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Staff member ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Staff member updated successfully"
+          },
+          "404": {
+            "description": "Staff member not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete staff member",
+        "description": "Remove a staff member from the system",
+        "tags": [
+          "Staffing Management"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Staff member ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Staff member deleted successfully"
+          },
+          "404": {
+            "description": "Staff member not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/staffing-management": {
+      "get": {
+        "summary": "Get all staff members",
+        "description": "Retrieve a list of all employees with pagination and filtering",
+        "tags": [
+          "Staffing Management"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 50
+            },
+            "description": "Number of records to return"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip"
+          },
+          {
+            "in": "query",
+            "name": "department",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by department"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of staff members",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new staff member",
+        "description": "Add a new employee to the staffing system",
+        "tags": [
+          "Staffing Management"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "employee_id",
+                  "name",
+                  "role"
+                ],
+                "properties": {
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "department": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  },
+                  "hire_date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "contract_type": {
+                    "type": "string"
+                  },
+                  "shift_type": {
+                    "type": "string"
+                  },
+                  "salary": {
+                    "type": "number"
+                  },
+                  "performance_rating": {
+                    "type": "number"
+                  },
+                  "training_status": {
+                    "type": "string"
+                  },
+                  "shift_hours": {
+                    "type": "number"
+                  },
+                  "overtime_hours": {
+                    "type": "number"
+                  },
+                  "total_hours": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Staff member created successfully"
+          },
+          "400": {
+            "description": "Invalid input"
           },
           "500": {
             "description": "Server error"

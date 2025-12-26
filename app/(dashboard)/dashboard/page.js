@@ -7,7 +7,7 @@ import StatsCard from '@/components/dashboard/StatsCard';
 import ChartWidget from '@/components/dashboard/ChartWidget';
 import RecentChanges from '@/components/dashboard/RecentChanges';
 import LoadingSpinner from '@/components/shared/LoadingSpinner';
-import { Package, DollarSign, AlertTriangle, TrendingUp, Warehouse, Truck, Users, BookOpen, BarChart3, CheckSquare, Database, ShoppingBag, PackageCheck, FileText } from 'lucide-react';
+import { Package, DollarSign, AlertTriangle, TrendingUp, Warehouse, Truck, Users, BookOpen, BarChart3, CheckSquare, Database, ShoppingBag, PackageCheck, FileText, UserCog } from 'lucide-react';
 import Link from 'next/link';
 
 export default function DashboardPage() {
@@ -520,6 +520,52 @@ export default function DashboardPage() {
                 {summary?.total_trucking_records !== undefined && (
                   <p className="text-sm font-semibold text-gray-900 mt-2">
                     {summary.total_trucking_records} total records
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/staffing-management">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-blue-100 rounded-lg">
+                    <Users className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <CardTitle className="text-lg">Staffing Management</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">
+                  Manage employees, contracts, and performance
+                </p>
+                {summary?.total_staff !== undefined && (
+                  <p className="text-sm font-semibold text-gray-900 mt-2">
+                    {summary.total_staff} staff members
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/gig-worker-management">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-purple-100 rounded-lg">
+                    <UserCog className="h-6 w-6 text-purple-600" />
+                  </div>
+                  <CardTitle className="text-lg">Gig Worker Management</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">
+                  Manage contractors and freelance workers
+                </p>
+                {summary?.total_gig_workers !== undefined && (
+                  <p className="text-sm font-semibold text-gray-900 mt-2">
+                    {summary.total_gig_workers} gig workers
                   </p>
                 )}
               </CardContent>

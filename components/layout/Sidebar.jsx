@@ -16,7 +16,8 @@ import {
   BookOpen,
   DollarSign,
   ShoppingBag,
-  PackageCheck
+  PackageCheck,
+  UserCog
 } from 'lucide-react';
 
 const navigation = [
@@ -40,6 +41,8 @@ const navigation = [
   { name: 'Customer Management', href: '/customer-management', icon: Users },
   { name: 'Demand Management', href: '/demand-management', icon: Package },
   { name: 'Partner Management', href: '/partner-management', icon: Users },
+  { name: 'Staffing Management', href: '/staffing-management', icon: Users },
+  { name: 'Gig Worker Management', href: '/gig-worker-management', icon: UserCog },
   { name: 'Distribution Management', href: '/distribution-management', icon: Truck },
   { name: 'Shipment Tracking', href: '/shipment-tracking', icon: Package },
   { name: 'Trucking & Mobility', href: '/trucking-mobility', icon: TruckIcon },
