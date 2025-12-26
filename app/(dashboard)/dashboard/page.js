@@ -434,29 +434,6 @@ export default function DashboardPage() {
             </Card>
           </Link>
 
-          <Link href="/demand-management">
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
-              <CardHeader>
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-rose-100 rounded-lg">
-                    <Package className="h-6 w-6 text-rose-600" />
-                  </div>
-                  <CardTitle className="text-lg">Demand Management</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-600">
-                  Manage product demand requests and fulfillment tracking
-                </p>
-                {summary?.pending_demands !== undefined && (
-                  <p className="text-sm font-semibold text-gray-900 mt-2">
-                    {summary.pending_demands} pending demands
-                  </p>
-                )}
-              </CardContent>
-            </Card>
-          </Link>
-
           <Link href="/distribution-management">
             <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
               <CardHeader>
@@ -469,11 +446,11 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-gray-600">
-                  Manage distribution logistics and deliveries
+                  Manage distribution operations and logistics tracking
                 </p>
                 {summary?.active_distributions !== undefined && (
                   <p className="text-sm font-semibold text-gray-900 mt-2">
-                    {summary.active_distributions} active distributions
+                    {summary.active_distributions} distributions
                   </p>
                 )}
               </CardContent>

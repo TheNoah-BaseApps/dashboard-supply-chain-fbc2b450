@@ -1168,7 +1168,8 @@
     },
     "/api/distribution-management/{id}": {
       "get": {
-        "summary": "Get distribution record by ID",
+        "summary": "Get a distribution record by ID",
+        "description": "Retrieve a specific distribution record",
         "tags": [
           "Distribution Management"
         ],
@@ -1179,15 +1180,16 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Distribution record ID"
           }
         ],
         "responses": {
           "200": {
-            "description": "Distribution record"
+            "description": "Distribution record details"
           },
           "404": {
-            "description": "Record not found"
+            "description": "Distribution record not found"
           },
           "500": {
             "description": "Server error"
@@ -1195,7 +1197,8 @@
         }
       },
       "put": {
-        "summary": "Update distribution record",
+        "summary": "Update a distribution record",
+        "description": "Update an existing distribution record",
         "tags": [
           "Distribution Management"
         ],
@@ -1221,10 +1224,10 @@
         },
         "responses": {
           "200": {
-            "description": "Record updated"
+            "description": "Distribution record updated successfully"
           },
           "404": {
-            "description": "Record not found"
+            "description": "Distribution record not found"
           },
           "500": {
             "description": "Server error"
@@ -1232,7 +1235,8 @@
         }
       },
       "delete": {
-        "summary": "Delete distribution record",
+        "summary": "Delete a distribution record",
+        "description": "Delete a distribution record by ID",
         "tags": [
           "Distribution Management"
         ],
@@ -1248,10 +1252,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Record deleted"
+            "description": "Distribution record deleted successfully"
           },
           "404": {
-            "description": "Record not found"
+            "description": "Distribution record not found"
           },
           "500": {
             "description": "Server error"
@@ -1262,7 +1266,7 @@
     "/api/distribution-management": {
       "get": {
         "summary": "Get all distribution records",
-        "description": "Retrieve all distribution management records with pagination and filtering",
+        "description": "Retrieve a list of all distribution management records with pagination and filtering",
         "tags": [
           "Distribution Management"
         ],
@@ -1283,7 +1287,7 @@
               "type": "integer",
               "default": 10
             },
-            "description": "Items per page"
+            "description": "Number of records per page"
           },
           {
             "in": "query",
@@ -1311,14 +1315,8 @@
                         "type": "object"
                       }
                     },
-                    "total": {
-                      "type": "integer"
-                    },
-                    "page": {
-                      "type": "integer"
-                    },
-                    "totalPages": {
-                      "type": "integer"
+                    "pagination": {
+                      "type": "object"
                     }
                   }
                 }
@@ -2049,89 +2047,6 @@
         }
       }
     },
-    "/api/order-purchases/{id}": {
-      "get": {
-        "summary": "Get an order/purchase by ID",
-        "tags": [
-          "Order Purchases"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Order details"
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "500": {
-            "description": "Server error"
-          }
-        }
-      },
-      "put": {
-        "summary": "Update an order/purchase",
-        "tags": [
-          "Order Purchases"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Updated successfully"
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "500": {
-            "description": "Server error"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete an order/purchase",
-        "tags": [
-          "Order Purchases"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Deleted successfully"
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "500": {
-            "description": "Server error"
-          }
-        }
-      }
-    },
     "/api/order-purchases": {
       "get": {
         "summary": "Get all order purchases",
@@ -2709,6 +2624,19 @@
     "/api/suppliers/bulk-import": {
       "post": {
         "summary": "Bulk import suppliers from CSV",
+        "tags": [
+          "Suppliers"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/suppliers/export": {
+      "get": {
+        "summary": "Export suppliers to CSV",
         "tags": [
           "Suppliers"
         ],
